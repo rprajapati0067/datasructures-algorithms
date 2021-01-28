@@ -103,4 +103,25 @@ public class Warmups {
 		return arr;
 
 	}
+
+	public static int maxCoin(int[][] arr, int n, int m) {
+
+		return maxCoinsRecursion(arr, n, m, 0, 0);
+
+	}
+
+	private static int maxCoinsRecursion(int[][] arr, int n, int m, int x, int y) {
+		if (x == n - 1 && y == m - 1) {
+			return arr[n - 1][m - 1];
+		}
+		if (x == n || y == m) {
+			return 0;
+		}
+
+		int down = maxCoinsRecursion(arr, n, m, x + 1, y);
+		int right = maxCoinsRecursion(arr, n, m, x, y + 1);
+
+		return arr[x][y] + Math.max(down, right);
+	}
+
 }
